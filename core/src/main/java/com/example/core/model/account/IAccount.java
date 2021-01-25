@@ -1,6 +1,6 @@
 package com.example.core.model.account;
 
-public interface Account {
+public interface IAccount {
 
     boolean loggInn();
 
