@@ -6,3 +6,11 @@ java {
     sourceCompatibility = JavaVersion.VERSION_1_7
     targetCompatibility = JavaVersion.VERSION_1_7
 }
+
+test {
+    useJUnitPlatform()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13.1'
+}
