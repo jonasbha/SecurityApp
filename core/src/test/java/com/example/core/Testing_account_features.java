@@ -26,7 +26,7 @@ public class Testing_account_features {
     protected IRepository repo;
 
     @Before
-    public void initialize_persistence() {
+    public void initialize_repository() {
         repo = new FakeRepository();
     }
 

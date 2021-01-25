@@ -36,8 +36,8 @@ public abstract class RegisteredUser implements IAccount, ICommunication {
     }
 
     @Override
-    public Message sendMessage() {
-        return null;
+    public void sendMessage(Message message) {
+        message.setSender(this);
     }
 
     @Override
