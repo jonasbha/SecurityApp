@@ -1,28 +1,43 @@
 package com.example.core.model.user;
 
 import com.example.core.model.Course;
-import com.example.core.model.account.StudentAccount;
 
 import java.util.List;
 
 public class Student extends RegisteredUser {
-
     String studium;
     int yearOfClass;
-
     List<Course> courses;
 
-    public Student(String password, String name, String email, String studium, int yearOfClass) {
-        super(password, name, email);
+    public Student(String name, String email, String password, String studium, int yearOfClass) {
+        super(name, email, password);
         this.studium = studium;
         this.yearOfClass = yearOfClass;
     }
 
-    public Student() {
-        super();
+    public String getStudium() {
+        return studium;
     }
 
-    public void registerAccount(String studium, int yearOfClass) {
-        this.account = new StudentAccount(this.name, this.email, this.studium, this.yearOfClass);
+    public void setStudium(String studium) {
+        this.studium = studium;
+    }
+
+    public int getYearOfClass() {
+        return yearOfClass;
+    }
+
+    public void setYearOfClass(int yearOfClass) {
+        this.yearOfClass = yearOfClass;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentAccount{" +
+                "studium='" + studium + '\'' +
+                ", yearOfClass=" + yearOfClass +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

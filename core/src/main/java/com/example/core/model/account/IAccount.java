@@ -7,4 +7,5 @@ public interface IAccount {
     boolean changePassword(String password);
 
     String recoverPassword();
+
 }
