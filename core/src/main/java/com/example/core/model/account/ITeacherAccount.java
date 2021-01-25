@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface ITeacherAccount {
 
-    List<Course> listCourses();
+    List<Course> getCourses();
 
+    void addCourse(Course course);
 }

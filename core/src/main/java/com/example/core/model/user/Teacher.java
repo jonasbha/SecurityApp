@@ -3,11 +3,12 @@ package com.example.core.model.user;
 import com.example.core.model.Course;
 import com.example.core.model.account.ITeacherAccount;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Teacher extends RegisteredUser implements ITeacherAccount {
     String img;
-    List<Course> courses;
+    List<Course> courses = new ArrayList<>();
 
     public Teacher(String name, String email, String password, String img) {
         super(name, email, password);
@@ -15,9 +16,15 @@ public class Teacher extends RegisteredUser implements ITeacherAccount {
     }
 
     @Override
-    public List<Course> listCourses() {
-        return null;
+    public List<Course> getCourses() {
+        return courses;
     }
+
+    @Override
+    public void addCourse(Course course) {
+        courses.add(course);
+    }
+
 
     @Override
     public String toString() {

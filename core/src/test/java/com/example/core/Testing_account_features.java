@@ -1,14 +1,14 @@
 package com.example.core;
 
+import com.example.core.model.Course;
 import com.example.core.model.repository.IRepository;
 import com.example.core.model.user.Student;
 import com.example.core.model.user.Teacher;
 import com.example.support.FakeRepository;
 
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -25,7 +25,7 @@ import static org.junit.Assert.assertTrue;
 public class Testing_account_features {
     protected IRepository repo;
 
-
+    @Before
     public void initialize_persistence() {
         repo = new FakeRepository();
     }
@@ -44,22 +44,17 @@ public class Testing_account_features {
 
     @Test
     public void autheticationSucceedsWithValidCredentials() {
-        repo = new FakeRepository();
         repo.addCredential("user", "password");
-
         assertTrue(repo.verifyCredentials("user", "password"));
     }
 
     @Test
     public void autheticationFailsWithInvalidCredentials() {
-        repo = new FakeRepository();
-
         assertFalse(repo.verifyCredentials("non-existing user", "password"));
     }
 
     @Test
     public void registeredUserCanChangePassword() {
-        repo = new FakeRepository();
         Teacher teacher = new Teacher("Gunnar", null, "password", null);
         repo.addCredential("Gunnar", "password");
 
@@ -73,6 +68,10 @@ public class Testing_account_features {
 
     @Test
     public void teacherCanAccessAllInvolvedCourses() {
+        Teacher teacher = new Teacher("Gunnar", null, "password", null);
+        teacher.addCourse(new Course("ITF222222", 123));
+        teacher.addCourse(new Course("ITF111111", 132));
 
+        assertEquals(teacher.getCourses().size(), 2);
     }
 }
