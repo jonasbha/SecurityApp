@@ -6,18 +6,18 @@ import java.util.List;
 public class Course {
     private String courseCode;
     private int PIN;
-    private List<Message> messages = new ArrayList<>();
+    private List<Dialog> dialogs = new ArrayList<>();
 
     public Course(String courseCode, int PIN) {
         this.courseCode = courseCode;
         this.PIN = PIN;
     }
 
-    public void addMessage(Message msg) {
-        messages.add(msg);
+    public void addDialog(Dialog dialog) {
+        dialogs.add(dialog);
     }
 
-    public List<Message> getMessages() {
-        return messages;
+    public List<Dialog> getDialogs() {
+        return dialogs;
     }
 }

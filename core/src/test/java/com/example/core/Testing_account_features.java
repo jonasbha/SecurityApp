@@ -3,7 +3,6 @@ package com.example.core;
 import com.example.core.model.Course;
 import com.example.core.model.repository.IRepository;
 import com.example.core.model.user.Student;
-import com.example.core.model.user.Teacher;
 import com.example.support.FakeRepository;
 
 import org.junit.Before;
@@ -37,7 +36,7 @@ public class Testing_account_features {
 
     @Test
     public void registeringTeacherAccountSucceeds() {
-        Teacher teacher = new Teacher("Gunnar", null, null, null);
+        com.example.core.model.user.Teacher teacher = new com.example.core.model.user.Teacher("Gunnar", null, null, null);
         assertEquals("Gunnar", teacher.getName());
     }
 
@@ -54,7 +53,7 @@ public class Testing_account_features {
 
     @Test
     public void registeredUserCanChangePassword() {
-        Teacher teacher = new Teacher("Gunnar", null, "password", null);
+        com.example.core.model.user.Teacher teacher = new com.example.core.model.user.Teacher("Gunnar", null, "password", null);
         repo.addCredential("Gunnar", "password");
 
         String newPassword = "new password";
@@ -67,7 +66,7 @@ public class Testing_account_features {
 
     @Test
     public void teacherCanAccessAllInvolvedCourses() {
-        Teacher teacher = new Teacher("Gunnar", null, "password", null);
+        com.example.core.model.user.Teacher teacher = new com.example.core.model.user.Teacher("Gunnar", null, "password", null);
         teacher.addCourse(new Course("ITF222222", 123));
         teacher.addCourse(new Course("ITF111111", 132));
 

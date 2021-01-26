@@ -1,7 +1,6 @@
 package com.example.core.model.user;
 
 import com.example.core.model.Course;
-import com.example.core.model.Message;
 import com.example.core.model.account.ITeacherAccount;
 
 import java.util.ArrayList;

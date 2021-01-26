@@ -4,31 +4,28 @@ import com.example.core.model.user.RegisteredUser;
 import com.example.core.model.user.Teacher;
 
 public class Message {
-    private boolean anonymous;
-    private String text;
     private RegisteredUser sender;
-    private Course course;
+    private String text;
+    private Dialog dialog;
+    private boolean anonymous;
 
-    public Message(String text, Course course, boolean anonymous) {
+    public Message(String text, Dialog dialog, boolean anonymous) {
         this.text = text;
-        this.course = course;
+        this.dialog = dialog;
         this.anonymous = anonymous;
-        addMessage();
+        dialog.addMessage(this);
     }
 
-    public Message(String text, Course course) {
+    public Message(String text, Dialog dialog) {
         this.text = text;
-        this.course = course;
-        addMessage();
+        this.dialog = dialog;
+        dialog.addMessage(this);
     }
 
     public void setSender(RegisteredUser sender) {
         this.sender = sender;
     }
 
-    private void addMessage() {
-        course.addMessage(this);
-    }
 
     public RegisteredUser getSender() {
         if (sender.getClass() == Teacher.class)

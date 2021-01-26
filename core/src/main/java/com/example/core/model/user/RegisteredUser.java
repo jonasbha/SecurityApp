@@ -1,5 +1,6 @@
 package com.example.core.model.user;
 
+import com.example.core.model.Dialog;
 import com.example.core.model.Message;
 import com.example.core.model.account.IAccount;
 import com.example.core.model.account.ICommunication;
@@ -37,7 +38,7 @@ public abstract class RegisteredUser implements IAccount, ICommunication {
     }
 
     @Override
-    public List<Message> listAllDialogs() {
+    public List<Dialog> listAllDialogs() {
         return null;
     }
 

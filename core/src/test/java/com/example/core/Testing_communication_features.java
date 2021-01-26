@@ -1,6 +1,7 @@
 package com.example.core;
 
 import com.example.core.model.Course;
+import com.example.core.model.Dialog;
 import com.example.core.model.Message;
 import com.example.core.model.repository.IRepository;
 import com.example.core.model.user.Student;
@@ -8,7 +9,6 @@ import com.example.core.model.user.Teacher;
 import com.example.support.FakeRepository;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -33,6 +33,7 @@ public class Testing_communication_features {
     Teacher teacher;
     Student student;
     Course course;
+    Dialog dialog;
 
     @Before
     public void initializeRepository() {
@@ -41,14 +42,15 @@ public class Testing_communication_features {
 
     @Before
     public void initializeConstantFakeVariables() {
-        teacher = new Teacher("Gunnar", null, null, null);
+        teacher = new com.example.core.model.user.Teacher("Gunnar", null, null, null);
         student = new Student("Geir", null, null, null, 2020);
         course = new Course("ITF123456", 123);
+        dialog = new Dialog(student, teacher, course,1);
     }
 
     @Test
     public void studentCanSendMessage() {
-        Message msg = new Message("Hello", course, false);
+        Message msg = new Message("Hello", dialog, false);
         student.sendMessage(msg);
 
         assertEquals(msg.getSender(), student);
@@ -56,7 +58,7 @@ public class Testing_communication_features {
 
     @Test
     public void studentCanSendMessageAnonymously() {
-        Message msg = new Message("Hello", course, true);
+        Message msg = new Message("Hello", dialog, true);
         student.sendMessage(msg);
 
         assertNull(msg.getSender());
@@ -64,26 +66,34 @@ public class Testing_communication_features {
 
     @Test
     public void teacherCanNotSendMessageAnonymously() {
-        Message msg = new Message("Hello", course, true);
+        Message msg = new Message("Hello", dialog, true);
         teacher.sendMessage(msg);
 
         assertEquals(msg.getSender(), teacher);
     }
 
     @Test
-    public void messagesAreStoredWithinEachCourse() {
-        Message msg = new Message("Hello", course, true);
+    public void messagesAreStoredWithinEachDialog() {
+        Message msg = new Message("Hello", dialog, true);
         student.sendMessage(msg);
 
-        assertEquals("Hello", course.getMessages().get(0).getText());
+        assertEquals("Hello", dialog.getMessage(msg).getText());
+    }
+
+    @Test
+    public void dialogsAreStoredWithinEachCourse() {
+        Message msg = new Message("Hello", dialog, true);
+
+        student.sendMessage(msg);
+        int lastDialog = course.getDialogs().size()-1;
+
+        assertEquals(dialog, course.getDialogs().get(lastDialog));
     }
 
     //En student skal se evt. svar fra forelesere på tidligere sendte meldinger (trenger ikke håndtere lest/ulest)
     @Test
     public void studentCanSeeResponseOnMessageFromTeacher() {
-        Message msg = new Message("Hello student", course);
-        teacher.sendMessage(msg);
-        student.openMessage(msg);
+
 
     }
 }
