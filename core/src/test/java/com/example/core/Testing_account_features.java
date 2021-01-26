@@ -30,30 +30,30 @@ public class Testing_account_features {
     }
 
     @Test
-    public void registeringStudentAccountSucceeds() {
+    public void registering_student_account_succeeds() {
         Student student = new Student(null, null, null, "Informasjonsteknologi", 2020);
         assertEquals("Informasjonsteknologi", student.getStudium());
     }
 
     @Test
-    public void registeringTeacherAccountSucceeds() {
+    public void registering_teacher_account_succeeds() {
         com.example.core.model.user.Teacher teacher = new com.example.core.model.user.Teacher("Gunnar", null, null, null);
         assertEquals("Gunnar", teacher.getName());
     }
 
     @Test
-    public void autheticationSucceedsWithValidCredentials() {
+    public void authentication_succeeds_with_valid_credentials() {
         repo.addCredential("user", "password");
         assertTrue(repo.verifyCredentials("user", "password"));
     }
 
     @Test
-    public void autheticationFailsWithInvalidCredentials() {
+    public void authentication_fails_with_invalid_credentials() {
         assertFalse(repo.verifyCredentials("non-existing user", "password"));
     }
 
     @Test
-    public void registeredUserCanChangePassword() {
+    public void registered_user_can_change_password() {
         Teacher teacher = new Teacher("Gunnar", null, "password", null);
         repo.addCredential("Gunnar", "password");
 
@@ -66,7 +66,7 @@ public class Testing_account_features {
     }
 
     @Test
-    public void teacherCanAccessAllInvolvedCourses() {
+    public void teacher_can_access_all_involved_courses() {
         com.example.core.model.user.Teacher teacher = new com.example.core.model.user.Teacher("Gunnar", null, "password", null);
         teacher.addCourse(new Course("ITF222222", 123));
         teacher.addCourse(new Course("ITF111111", 132));

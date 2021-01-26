@@ -31,12 +31,12 @@ public class Testing_communication_between_registered_users {
     private Dialog dialog;
 
     @Before
-    public void initializeRepository() {
+    public void initialize_repository() {
         repo = new FakeRepository();
     }
 
     @Before
-    public void initializeConstantFakeVariables() {
+    public void initialize_constant_fake_variables() {
         teacher = new Teacher("Gunnar", null, null, null);
         student = new Student("Geir", null, null, null, 2020);
         course = new Course("ITF123456", 123);
@@ -44,7 +44,7 @@ public class Testing_communication_between_registered_users {
     }
 
     @Test
-    public void studentCanSendMessage() {
+    public void student_can_send_message() {
         Message msg = new Message("Hello", dialog, false);
         student.sendMessage(msg);
 
@@ -52,7 +52,7 @@ public class Testing_communication_between_registered_users {
     }
 
     @Test
-    public void studentCanSendMessageAnonymously() {
+    public void student_can_send_message_anonymously() {
         Message msg = new Message("Hello", dialog, true);
         student.sendMessage(msg);
 
@@ -60,7 +60,7 @@ public class Testing_communication_between_registered_users {
     }
 
     @Test
-    public void teacherCanNotSendMessageAnonymously() {
+    public void teacher_can_not_send_message_anonymously() {
         Message msg = new Message("Hello", dialog, true);
         teacher.sendMessage(msg);
 
@@ -68,7 +68,7 @@ public class Testing_communication_between_registered_users {
     }
 
     @Test
-    public void messagesAreStoredInADialog() {
+    public void messages_are_stored_in_a_dialog() {
         Message msg = new Message("Hello", dialog, true);
         student.sendMessage(msg);
 
@@ -76,7 +76,7 @@ public class Testing_communication_between_registered_users {
     }
 
     @Test
-    public void dialogsAreStoredInACourse() {
+    public void dialogs_are_stored_in_a_course() {
         Message msg = new Message("Hello", dialog, true);
 
         student.sendMessage(msg);
@@ -86,7 +86,7 @@ public class Testing_communication_between_registered_users {
     }
 
     @Test
-    public void studentCanSeeResponseOnMessageFromTeacher() {
+    public void student_can_see_response_on_message_from_teacher() {
         Message msg = new Message("Im a teacher and this is my answer", dialog);
         teacher.sendMessage(msg);
 
@@ -94,7 +94,7 @@ public class Testing_communication_between_registered_users {
     }
 
     @Test
-    public void studentCanNotReadDialogOfAnotherStudent() {
+    public void student_can_not_read_dialog_of_another_student() {
         Message msg = new Message("Hello", dialog, true);
         student.sendMessage(msg);
         Student fakeStudent = new Student("Ole", null, null, null, 2020);
@@ -103,18 +103,18 @@ public class Testing_communication_between_registered_users {
     }
 
     @Test
-    public void teacherCanOpenMessagesOfInvolvedCourses() {
+    public void teacher_can_open_messages_of_involved_courses() {
         assertTrue(teacher.openDialog(dialog));
     }
 
     @Test
-    public void teacherCanNotOpenMessagesOfCoursesWhenNotInvolved() {
+    public void teacher_can_not_open_messages_of_courses_when_not_involved() {
         Teacher fakeTeacher = new Teacher("Ole", null, null, null);
         assertFalse(fakeTeacher.openDialog(dialog));
     }
 
     @Test
-    public void teacherCanRespondToMessagesByStudents() {
+    public void teacher_can_respond_to_messages_by_students() {
         Message studMsg = new Message("Hello teacher", dialog, true);
         student.sendMessage(studMsg);
         Message teachMsg = new Message("Hello student", dialog);
@@ -125,7 +125,7 @@ public class Testing_communication_between_registered_users {
     }
 
     @Test
-    public void teacherCanRespondOneTimeEachMessage() {
+    public void teacher_can_respond_one_time_each_message() {
         Message studMsg = new Message("Hello teacher", dialog, true);
         student.sendMessage(studMsg);
         Message teachMsg = new Message("Hello student", dialog);
