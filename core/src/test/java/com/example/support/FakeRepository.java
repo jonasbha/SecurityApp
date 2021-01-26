@@ -1,5 +1,6 @@
 package com.example.support;
 
+import com.example.core.model.Report;
 import com.example.core.model.repository.IRepository;
 
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.Map;
 public class FakeRepository implements IRepository {
 
     HashMap<String, String> credentials = new HashMap<>();
+    ArrayList<Report> reports = new ArrayList<>();
 
     @Override
     public boolean verifyCredentials(String username, String password) {
@@ -42,5 +44,10 @@ public class FakeRepository implements IRepository {
             }
 
         }
+    }
+
+    @Override
+    public void addReport(Report report) {
+        reports.add(report);
     }
 }

@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface ICommunication {
     boolean sendMessage(Message msg);
-    void openMessage(Message msg);
     boolean openDialog(Dialog dialog);
     List<Dialog> listAllDialogs();
 }

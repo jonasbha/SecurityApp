@@ -66,7 +66,7 @@ public class Testing_account_features {
     }
 
     @Test
-    public void teacher_can_access_all_involved_courses() {
+    public void teacher_can_number_of_involved_courses() {
         com.example.core.model.user.Teacher teacher = new com.example.core.model.user.Teacher("Gunnar", null, "password", null);
         teacher.addCourse(new Course("ITF222222", 123));
         teacher.addCourse(new Course("ITF111111", 132));

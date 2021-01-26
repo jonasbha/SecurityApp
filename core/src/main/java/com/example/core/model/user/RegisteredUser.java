@@ -37,10 +37,6 @@ public abstract class RegisteredUser implements IAccount, ICommunication {
         return null;
     }
 
-    @Override
-    public void openMessage(Message msg) {
-
-    }
 
     public String getName() {
         return name;

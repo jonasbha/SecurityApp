@@ -3,10 +3,8 @@ package com.example.core;
 import com.example.core.model.Course;
 import com.example.core.model.Dialog;
 import com.example.core.model.Message;
-import com.example.core.model.repository.IRepository;
 import com.example.core.model.user.Student;
 import com.example.core.model.user.Teacher;
-import com.example.support.FakeRepository;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -24,16 +22,10 @@ import static org.junit.Assert.assertNull;
 
 public class Testing_communication_between_registered_users {
 
-    protected IRepository repo;
     private Teacher teacher;
     private Student student;
     private Course course;
     private Dialog dialog;
-
-    @Before
-    public void initialize_repository() {
-        repo = new FakeRepository();
-    }
 
     @Before
     public void initialize_constant_fake_variables() {
@@ -133,5 +125,18 @@ public class Testing_communication_between_registered_users {
         Message teachMsg2 = new Message("Hello again student", dialog);
 
         assertFalse(teacher.sendMessage(teachMsg2));
+    }
+
+    @Test
+    public void teacher_can_respond_multiple_times_in_one_dialog() {
+        Message studMsg = new Message("Hello teacher", dialog, true);
+        student.sendMessage(studMsg);
+        Message teachMsg = new Message("Hello student", dialog);
+        teacher.sendMessage(teachMsg);
+        Message studMsg2 = new Message("Hello again teacher", dialog, true);
+        student.sendMessage(studMsg2);
+        Message teachMsg2 = new Message("Hello again student", dialog);
+
+        assertTrue(teacher.sendMessage(teachMsg2));
     }
 }

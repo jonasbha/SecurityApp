@@ -20,4 +20,8 @@ public class Course {
     public List<Dialog> getDialogs() {
         return dialogs;
     }
+
+    public int getPIN() {
+        return PIN;
+    }
 }

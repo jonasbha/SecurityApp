@@ -1,5 +1,7 @@
 package com.example.core.model.repository;
 
+import com.example.core.model.Report;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -12,4 +14,7 @@ public interface IRepository {
     void updatePassword(String username, String password);
 
     void updateUsername(String username);
+
+    // reports
+    void addReport(Report report);
 }

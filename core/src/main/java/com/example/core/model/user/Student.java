@@ -1,15 +1,11 @@
 package com.example.core.model.user;
 
-import com.example.core.model.Course;
 import com.example.core.model.Dialog;
 import com.example.core.model.Message;
-
-import java.util.List;
 
 public class Student extends RegisteredUser {
     String studium;
     int yearOfClass;
-    List<Course> courses;
 
     public Student(String name, String email, String password, String studium, int yearOfClass) {
         super(name, email, password);

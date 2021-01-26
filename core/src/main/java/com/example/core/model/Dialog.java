@@ -37,4 +37,8 @@ public class Dialog {
     public RegisteredUser getTeacher() {
         return teacher;
     }
+
+    public Course getCourse() {
+        return course;
+    }
 }
