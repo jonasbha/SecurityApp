@@ -29,4 +29,12 @@ public class Dialog {
     public Stack<Message> getMessages() {
         return messages;
     }
+
+    public RegisteredUser getStudent() {
+        return student;
+    }
+
+    public RegisteredUser getTeacher() {
+        return teacher;
+    }
 }

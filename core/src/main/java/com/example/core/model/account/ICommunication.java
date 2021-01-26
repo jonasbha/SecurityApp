@@ -6,7 +6,8 @@ import com.example.core.model.Message;
 import java.util.List;
 
 public interface ICommunication {
-    void sendMessage(Message msg);
+    boolean sendMessage(Message msg);
     void openMessage(Message msg);
+    boolean openDialog(Dialog dialog);
     List<Dialog> listAllDialogs();
 }

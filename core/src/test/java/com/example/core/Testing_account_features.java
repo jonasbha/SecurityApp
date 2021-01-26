@@ -3,6 +3,7 @@ package com.example.core;
 import com.example.core.model.Course;
 import com.example.core.model.repository.IRepository;
 import com.example.core.model.user.Student;
+import com.example.core.model.user.Teacher;
 import com.example.support.FakeRepository;
 
 import org.junit.Before;
@@ -53,7 +54,7 @@ public class Testing_account_features {
 
     @Test
     public void registeredUserCanChangePassword() {
-        com.example.core.model.user.Teacher teacher = new com.example.core.model.user.Teacher("Gunnar", null, "password", null);
+        Teacher teacher = new Teacher("Gunnar", null, "password", null);
         repo.addCredential("Gunnar", "password");
 
         String newPassword = "new password";

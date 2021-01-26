@@ -33,18 +33,13 @@ public abstract class RegisteredUser implements IAccount, ICommunication {
     }
 
     @Override
-    public void openMessage(Message msg) {
-
-    }
-
-    @Override
     public List<Dialog> listAllDialogs() {
         return null;
     }
 
     @Override
-    public void sendMessage(Message msg) {
-        msg.setSender(this);
+    public void openMessage(Message msg) {
+
     }
 
     public String getName() {

@@ -12,28 +12,23 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertNull;
 
 /** En student skal kunne sende melding ang. ønsket emne/fag, men forbli anonym
  * En student skal se evt. svar fra forelesere på tidligere sendte meldinger (trenger ikke håndtere lest/ulest)
  * En foreleser skal kunne lese meldinger fra studenter i emner(/et) man selv underviser
  * En foreleser skal kunne svare på meldinger fra studenter (kun ett svar pr. melding)
- *
- * En gjestebruker (anonym/ikke innlogget) skal kunne se alle meldinger (og svar) for et valgt emne,
- * men kun de man kjenner en  firesifret PIN-kode til. Visningssiden skal inneholde emnekode,
- * slik at den lett kan printes for en "kursrapport".
- *
- * En gjestebruker (anonym/ikke innlogget) skal kunne rapportere en upassende melding fra studentene som de ikke er enige i
- * En gjestebruker (anonym/ikke innlogget) skal kunne legge inn en kommentar på meldinger fra studentene.
  * */
 
-public class Testing_communication_features {
+public class Testing_communication_between_registered_users {
 
     protected IRepository repo;
-    Teacher teacher;
-    Student student;
-    Course course;
-    Dialog dialog;
+    private Teacher teacher;
+    private Student student;
+    private Course course;
+    private Dialog dialog;
 
     @Before
     public void initializeRepository() {
@@ -42,7 +37,7 @@ public class Testing_communication_features {
 
     @Before
     public void initializeConstantFakeVariables() {
-        teacher = new com.example.core.model.user.Teacher("Gunnar", null, null, null);
+        teacher = new Teacher("Gunnar", null, null, null);
         student = new Student("Geir", null, null, null, 2020);
         course = new Course("ITF123456", 123);
         dialog = new Dialog(student, teacher, course,1);
@@ -73,7 +68,7 @@ public class Testing_communication_features {
     }
 
     @Test
-    public void messagesAreStoredWithinEachDialog() {
+    public void messagesAreStoredInADialog() {
         Message msg = new Message("Hello", dialog, true);
         student.sendMessage(msg);
 
@@ -81,7 +76,7 @@ public class Testing_communication_features {
     }
 
     @Test
-    public void dialogsAreStoredWithinEachCourse() {
+    public void dialogsAreStoredInACourse() {
         Message msg = new Message("Hello", dialog, true);
 
         student.sendMessage(msg);
@@ -90,10 +85,53 @@ public class Testing_communication_features {
         assertEquals(dialog, course.getDialogs().get(lastDialog));
     }
 
-    //En student skal se evt. svar fra forelesere på tidligere sendte meldinger (trenger ikke håndtere lest/ulest)
     @Test
     public void studentCanSeeResponseOnMessageFromTeacher() {
+        Message msg = new Message("Im a teacher and this is my answer", dialog);
+        teacher.sendMessage(msg);
 
+        assertEquals("Im a teacher and this is my answer", dialog.getMessage(msg).getText());
+    }
 
+    @Test
+    public void studentCanNotReadDialogOfAnotherStudent() {
+        Message msg = new Message("Hello", dialog, true);
+        student.sendMessage(msg);
+        Student fakeStudent = new Student("Ole", null, null, null, 2020);
+
+        assertFalse(fakeStudent.openDialog(dialog));
+    }
+
+    @Test
+    public void teacherCanOpenMessagesOfInvolvedCourses() {
+        assertTrue(teacher.openDialog(dialog));
+    }
+
+    @Test
+    public void teacherCanNotOpenMessagesOfCoursesWhenNotInvolved() {
+        Teacher fakeTeacher = new Teacher("Ole", null, null, null);
+        assertFalse(fakeTeacher.openDialog(dialog));
+    }
+
+    @Test
+    public void teacherCanRespondToMessagesByStudents() {
+        Message studMsg = new Message("Hello teacher", dialog, true);
+        student.sendMessage(studMsg);
+        Message teachMsg = new Message("Hello student", dialog);
+        teacher.sendMessage(teachMsg);
+
+        assertEquals("Hello teacher", dialog.getMessage(studMsg).getText());
+        assertEquals("Hello student", dialog.getMessages().peek().getText());
+    }
+
+    @Test
+    public void teacherCanRespondOneTimeEachMessage() {
+        Message studMsg = new Message("Hello teacher", dialog, true);
+        student.sendMessage(studMsg);
+        Message teachMsg = new Message("Hello student", dialog);
+        teacher.sendMessage(teachMsg);
+        Message teachMsg2 = new Message("Hello again student", dialog);
+
+        assertFalse(teacher.sendMessage(teachMsg2));
     }
 }

@@ -1,6 +1,8 @@
 package com.example.core.model.user;
 
 import com.example.core.model.Course;
+import com.example.core.model.Dialog;
+import com.example.core.model.Message;
 
 import java.util.List;
 
@@ -29,6 +31,18 @@ public class Student extends RegisteredUser {
 
     public void setYearOfClass(int yearOfClass) {
         this.yearOfClass = yearOfClass;
+    }
+
+    @Override
+    public boolean openDialog(Dialog dialog) {
+        return this == dialog.getStudent();
+    }
+
+    @Override
+    public boolean sendMessage(Message msg) {
+        msg.setSender(this);
+        msg.getDialog().addMessage(msg);
+        return true;
     }
 
     @Override

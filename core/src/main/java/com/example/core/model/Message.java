@@ -13,13 +13,11 @@ public class Message {
         this.text = text;
         this.dialog = dialog;
         this.anonymous = anonymous;
-        dialog.addMessage(this);
     }
 
     public Message(String text, Dialog dialog) {
         this.text = text;
         this.dialog = dialog;
-        dialog.addMessage(this);
     }
 
     public void setSender(RegisteredUser sender) {
@@ -38,5 +36,9 @@ public class Message {
 
     public String getText() {
         return text;
+    }
+
+    public Dialog getDialog() {
+        return dialog;
     }
 }
