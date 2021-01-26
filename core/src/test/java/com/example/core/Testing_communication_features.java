@@ -4,14 +4,15 @@ import com.example.core.model.Course;
 import com.example.core.model.Message;
 import com.example.core.model.repository.IRepository;
 import com.example.core.model.user.Student;
+import com.example.core.model.user.Teacher;
 import com.example.support.FakeRepository;
 
 import org.junit.Before;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import org.junit.BeforeClass;
 import org.junit.Test;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /** En student skal kunne sende melding ang. ønsket emne/fag, men forbli anonym
  * En student skal se evt. svar fra forelesere på tidligere sendte meldinger (trenger ikke håndtere lest/ulest)
@@ -29,17 +30,24 @@ import org.junit.Test;
 public class Testing_communication_features {
 
     protected IRepository repo;
+    Teacher teacher;
+    Student student;
+    Course course;
 
     @Before
-    public void initialize_repository() {
+    public void initializeRepository() {
         repo = new FakeRepository();
     }
 
-    @Test
-    public void studentSendMessage() {
-        Student student = new Student("Geir", null, null, null, 2020);
-        Course course = new Course("ITF123456", 123);
+    @Before
+    public void initializeConstantFakeVariables() {
+        teacher = new Teacher("Gunnar", null, null, null);
+        student = new Student("Geir", null, null, null, 2020);
+        course = new Course("ITF123456", 123);
+    }
 
+    @Test
+    public void studentCanSendMessage() {
         Message msg = new Message("Hello", course, false);
         student.sendMessage(msg);
 
@@ -47,13 +55,35 @@ public class Testing_communication_features {
     }
 
     @Test
-    public void studentSendMessageAnonymously() {
-        Student student = new Student("Geir", null, null, null, 2020);
-        Course course = new Course("ITF123456", 123);
-
+    public void studentCanSendMessageAnonymously() {
         Message msg = new Message("Hello", course, true);
         student.sendMessage(msg);
 
         assertNull(msg.getSender());
+    }
+
+    @Test
+    public void teacherCanNotSendMessageAnonymously() {
+        Message msg = new Message("Hello", course, true);
+        teacher.sendMessage(msg);
+
+        assertEquals(msg.getSender(), teacher);
+    }
+
+    @Test
+    public void messagesAreStoredWithinEachCourse() {
+        Message msg = new Message("Hello", course, true);
+        student.sendMessage(msg);
+
+        assertEquals("Hello", course.getMessages().get(0).getText());
+    }
+
+    //En student skal se evt. svar fra forelesere på tidligere sendte meldinger (trenger ikke håndtere lest/ulest)
+    @Test
+    public void studentCanSeeResponseOnMessageFromTeacher() {
+        Message msg = new Message("Hello student", course);
+        teacher.sendMessage(msg);
+        student.openMessage(msg);
+
     }
 }

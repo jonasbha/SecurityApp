@@ -1,19 +1,24 @@
 package com.example.core.model;
 
 import com.example.core.model.user.RegisteredUser;
-
-import java.util.UUID;
+import com.example.core.model.user.Teacher;
 
 public class Message {
     private boolean anonymous;
     private String text;
     private RegisteredUser sender;
-    private Course receiver;
+    private Course course;
 
-    public Message(String text, Course receiver, boolean anonymous) {
+    public Message(String text, Course course, boolean anonymous) {
         this.text = text;
-        this.receiver = receiver;
+        this.course = course;
         this.anonymous = anonymous;
+        addMessage();
+    }
+
+    public Message(String text, Course course) {
+        this.text = text;
+        this.course = course;
         addMessage();
     }
 
@@ -22,12 +27,19 @@ public class Message {
     }
 
     private void addMessage() {
-        receiver.addMessage(this);
+        course.addMessage(this);
     }
 
     public RegisteredUser getSender() {
+        if (sender.getClass() == Teacher.class)
+            anonymous = false;
+
         if (anonymous)
             return null;
         return sender;
+    }
+
+    public String getText() {
+        return text;
     }
 }

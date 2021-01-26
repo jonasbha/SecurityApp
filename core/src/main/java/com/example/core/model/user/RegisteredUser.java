@@ -4,8 +4,6 @@ import com.example.core.model.Message;
 import com.example.core.model.account.IAccount;
 import com.example.core.model.account.ICommunication;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public abstract class RegisteredUser implements IAccount, ICommunication {
@@ -25,9 +23,7 @@ public abstract class RegisteredUser implements IAccount, ICommunication {
     }
 
     @Override
-    public void requestNewPasswordLink(String email) {
-
-    }
+    public void requestNewPasswordLink(String email) {}
 
     @Override
     public boolean changePassword(String password) {
@@ -36,13 +32,18 @@ public abstract class RegisteredUser implements IAccount, ICommunication {
     }
 
     @Override
-    public void sendMessage(Message message) {
-        message.setSender(this);
+    public void openMessage(Message msg) {
+
     }
 
     @Override
-    public List<Message> openReceivedMessage() {
+    public List<Message> listAllDialogs() {
         return null;
+    }
+
+    @Override
+    public void sendMessage(Message msg) {
+        msg.setSender(this);
     }
 
     public String getName() {

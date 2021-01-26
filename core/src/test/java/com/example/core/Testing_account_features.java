@@ -7,7 +7,6 @@ import com.example.core.model.user.Teacher;
 import com.example.support.FakeRepository;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -58,11 +57,11 @@ public class Testing_account_features {
         Teacher teacher = new Teacher("Gunnar", null, "password", null);
         repo.addCredential("Gunnar", "password");
 
-        String password = "new password";
-        teacher.changePassword(password);
-        repo.updatePassword(teacher.getName(), password);
+        String newPassword = "new password";
+        teacher.changePassword(newPassword);
+        repo.updatePassword(teacher.getName(), newPassword);
 
-        assertTrue(repo.verifyCredentials("Gunnar", password));
+        assertTrue(repo.verifyCredentials("Gunnar", newPassword));
         assertFalse(repo.verifyCredentials("Gunnar", "password"));
     }
 

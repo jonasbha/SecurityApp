@@ -5,6 +5,7 @@ import com.example.core.model.Message;
 import java.util.List;
 
 public interface ICommunication {
-    void sendMessage(Message message);
-    List<Message> openReceivedMessage();
+    void sendMessage(Message msg);
+    void openMessage(Message msg);
+    List<Message> listAllDialogs();
 }

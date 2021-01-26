@@ -1,6 +1,7 @@
 package com.example.core.model.user;
 
 import com.example.core.model.Course;
+import com.example.core.model.Message;
 import com.example.core.model.account.ITeacherAccount;
 
 import java.util.ArrayList;
@@ -24,7 +25,6 @@ public class Teacher extends RegisteredUser implements ITeacherAccount {
     public void addCourse(Course course) {
         courses.add(course);
     }
-
 
     @Override
     public String toString() {
