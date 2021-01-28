@@ -1,7 +1,7 @@
 package com.example.core.model.user;
 
 import com.example.core.model.Course;
-import com.example.core.model.Dialog;
+import com.example.core.model.Dialogue;
 import com.example.core.model.Message;
 import com.example.core.model.account.ITeacherAccount;
 
@@ -28,17 +28,17 @@ public class Teacher extends RegisteredUser implements ITeacherAccount {
     }
 
     @Override
-    public boolean openDialog(Dialog dialog) {
-        return this == dialog.getTeacher();
+    public boolean openDialog(Dialogue dialogue) {
+        return this == dialogue.getTeacher();
     }
 
     @Override
     public boolean sendMessage(Message msg) {
-        if (msg.getDialog().getMessages().size() != 0)
-            if (msg.getDialog().getMessages().peek().getSender() == this)
+        if (msg.getDialogue().getMessages().size() != 0)
+            if (msg.getDialogue().getMessages().peek().getSender() == this)
                 return false;
         msg.setSender(this);
-        msg.getDialog().addMessage(msg);
+        msg.getDialogue().addMessage(msg);
         return true;
     }
 

@@ -1,6 +1,6 @@
 package com.example.core.model.user;
 
-import com.example.core.model.Dialog;
+import com.example.core.model.Dialogue;
 import com.example.core.model.Message;
 import com.example.core.model.account.IAccount;
 import com.example.core.model.account.ICommunication;
@@ -33,25 +33,20 @@ public abstract class RegisteredUser implements IAccount, ICommunication {
     }
 
     @Override
-    public List<Dialog> listAllDialogs() {
+    public boolean sendMessage(Message msg) {
+        msg.setSender(this);
+        msg.getDialogue().addMessage(msg);
+        return true;
+    }
+
+    @Override
+    public List<Dialogue> listAllDialogs() {
         return null;
     }
 
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     private void setPassword(String password) {

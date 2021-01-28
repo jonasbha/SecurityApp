@@ -4,18 +4,18 @@ import com.example.core.model.user.RegisteredUser;
 
 import java.util.Stack;
 
-public class Dialog {
+public class Dialogue {
     private Stack<Message> messages = new Stack<>();
     private RegisteredUser student, teacher;
     private Course course;
     private int id;
 
-    public Dialog(RegisteredUser student, RegisteredUser teacher, Course course, int id) {
+    public Dialogue(RegisteredUser student, RegisteredUser teacher, Course course, int id) {
         this.student = student;
         this.teacher = teacher;
         this.id = id;
         this.course = course;
-        course.addDialog(this);
+        course.addDialogue(this);
     }
 
     public void addMessage(Message msg) {

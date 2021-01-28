@@ -1,7 +1,7 @@
 package com.example.core;
 
 import com.example.core.model.Course;
-import com.example.core.model.Dialog;
+import com.example.core.model.Dialogue;
 import com.example.core.model.Message;
 import com.example.core.model.user.Student;
 import com.example.core.model.user.Teacher;
@@ -25,19 +25,19 @@ public class Testing_communication_between_registered_users {
     private Teacher teacher;
     private Student student;
     private Course course;
-    private Dialog dialog;
+    private Dialogue dialogue;
 
     @Before
     public void initialize_constant_fake_variables() {
         teacher = new Teacher("Gunnar", null, null, null);
         student = new Student("Geir", null, null, null, 2020);
         course = new Course("ITF123456", 123);
-        dialog = new Dialog(student, teacher, course,1);
+        dialogue = new Dialogue(student, teacher, course,1);
     }
 
     @Test
     public void student_can_send_message() {
-        Message msg = new Message("Hello", dialog, false);
+        Message msg = new Message("Hello", dialogue, false);
         student.sendMessage(msg);
 
         assertEquals(msg.getSender(), student);
@@ -45,7 +45,7 @@ public class Testing_communication_between_registered_users {
 
     @Test
     public void student_can_send_message_anonymously() {
-        Message msg = new Message("Hello", dialog, true);
+        Message msg = new Message("Hello", dialogue, true);
         student.sendMessage(msg);
 
         assertNull(msg.getSender());
@@ -53,7 +53,7 @@ public class Testing_communication_between_registered_users {
 
     @Test
     public void teacher_can_not_send_message_anonymously() {
-        Message msg = new Message("Hello", dialog, true);
+        Message msg = new Message("Hello", dialogue, true);
         teacher.sendMessage(msg);
 
         assertEquals(msg.getSender(), teacher);
@@ -61,81 +61,81 @@ public class Testing_communication_between_registered_users {
 
     @Test
     public void messages_are_stored_in_a_dialog() {
-        Message msg = new Message("Hello", dialog, true);
+        Message msg = new Message("Hello", dialogue, true);
         student.sendMessage(msg);
 
-        assertEquals("Hello", dialog.getMessage(msg).getText());
+        assertEquals("Hello", dialogue.getMessage(msg).getText());
     }
 
     @Test
     public void dialogs_are_stored_in_a_course() {
-        Message msg = new Message("Hello", dialog, true);
+        Message msg = new Message("Hello", dialogue, true);
 
         student.sendMessage(msg);
-        int lastDialog = course.getDialogs().size()-1;
+        int lastDialog = course.getDialogues().size()-1;
 
-        assertEquals(dialog, course.getDialogs().get(lastDialog));
+        assertEquals(dialogue, course.getDialogues().get(lastDialog));
     }
 
     @Test
     public void student_can_see_response_on_message_from_teacher() {
-        Message msg = new Message("Im a teacher and this is my answer", dialog);
+        Message msg = new Message("Im a teacher and this is my answer", dialogue);
         teacher.sendMessage(msg);
 
-        assertEquals("Im a teacher and this is my answer", dialog.getMessage(msg).getText());
+        assertEquals("Im a teacher and this is my answer", dialogue.getMessage(msg).getText());
     }
 
     @Test
     public void student_can_not_read_dialog_of_another_student() {
-        Message msg = new Message("Hello", dialog, true);
+        Message msg = new Message("Hello", dialogue, true);
         student.sendMessage(msg);
         Student fakeStudent = new Student("Ole", null, null, null, 2020);
 
-        assertFalse(fakeStudent.openDialog(dialog));
+        assertFalse(fakeStudent.openDialog(dialogue));
     }
 
     @Test
     public void teacher_can_open_messages_of_involved_courses() {
-        assertTrue(teacher.openDialog(dialog));
+        assertTrue(teacher.openDialog(dialogue));
     }
 
     @Test
     public void teacher_can_not_open_messages_of_courses_when_not_involved() {
         Teacher fakeTeacher = new Teacher("Ole", null, null, null);
-        assertFalse(fakeTeacher.openDialog(dialog));
+        assertFalse(fakeTeacher.openDialog(dialogue));
     }
 
     @Test
     public void teacher_can_respond_to_messages_by_students() {
-        Message studMsg = new Message("Hello teacher", dialog, true);
+        Message studMsg = new Message("Hello teacher", dialogue, true);
         student.sendMessage(studMsg);
-        Message teachMsg = new Message("Hello student", dialog);
+        Message teachMsg = new Message("Hello student", dialogue);
         teacher.sendMessage(teachMsg);
 
-        assertEquals("Hello teacher", dialog.getMessage(studMsg).getText());
-        assertEquals("Hello student", dialog.getMessages().peek().getText());
+        assertEquals("Hello teacher", dialogue.getMessage(studMsg).getText());
+        assertEquals("Hello student", dialogue.getMessages().peek().getText());
     }
 
     @Test
     public void teacher_can_respond_one_time_each_message() {
-        Message studMsg = new Message("Hello teacher", dialog, true);
+        Message studMsg = new Message("Hello teacher", dialogue, true);
         student.sendMessage(studMsg);
-        Message teachMsg = new Message("Hello student", dialog);
+        Message teachMsg = new Message("Hello student", dialogue);
         teacher.sendMessage(teachMsg);
-        Message teachMsg2 = new Message("Hello again student", dialog);
+        Message teachMsg2 = new Message("Hello again student", dialogue);
 
         assertFalse(teacher.sendMessage(teachMsg2));
     }
 
     @Test
     public void teacher_can_respond_multiple_times_in_one_dialog() {
-        Message studMsg = new Message("Hello teacher", dialog, true);
+        Message studMsg = new Message("Hello teacher", dialogue, true);
         student.sendMessage(studMsg);
-        Message teachMsg = new Message("Hello student", dialog);
+        Message teachMsg = new Message("Hello student", dialogue);
         teacher.sendMessage(teachMsg);
-        Message studMsg2 = new Message("Hello again teacher", dialog, true);
+        Message studMsg2 = new Message("Hello again teacher", dialogue, true);
         student.sendMessage(studMsg2);
-        Message teachMsg2 = new Message("Hello again student", dialog);
+        Message teachMsg2 = new Message("Hello again student", dialogue);
 
         assertTrue(teacher.sendMessage(teachMsg2));
     }

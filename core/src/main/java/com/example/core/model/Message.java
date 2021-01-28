@@ -9,19 +9,20 @@ import java.util.List;
 public class Message {
     private RegisteredUser sender;
     private String text;
-    private Dialog dialog;
+    private Dialogue dialogue;
     private boolean anonymous;
     private List<String> comments = new ArrayList<>();
+    int id;
 
-    public Message(String text, Dialog dialog, boolean anonymous) {
+    public Message(String text, Dialogue dialogue, boolean anonymous) {
         this.text = text;
-        this.dialog = dialog;
+        this.dialogue = dialogue;
         this.anonymous = anonymous;
     }
 
-    public Message(String text, Dialog dialog) {
+    public Message(String text, Dialogue dialogue) {
         this.text = text;
-        this.dialog = dialog;
+        this.dialogue = dialogue;
     }
 
     public void setSender(RegisteredUser sender) {
@@ -42,8 +43,8 @@ public class Message {
         return text;
     }
 
-    public Dialog getDialog() {
-        return dialog;
+    public Dialogue getDialogue() {
+        return dialogue;
     }
 
     public void addComment(String comment) {

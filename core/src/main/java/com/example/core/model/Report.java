@@ -1,7 +1,7 @@
 package com.example.core.model;
 
 public class Report {
-    private Message message;
+    private final Message message;
     private String issue;
 
     public Report(Message message, String issue) {
