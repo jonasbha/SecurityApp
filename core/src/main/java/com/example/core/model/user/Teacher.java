@@ -1,14 +1,12 @@
 package com.example.core.model.user;
 
 import com.example.core.model.Course;
-import com.example.core.model.Dialogue;
-import com.example.core.model.Message;
-import com.example.core.model.account.ITeacherAccount;
+import com.example.core.model.account.TeacherAccount;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Teacher extends RegisteredUser implements ITeacherAccount {
+public class Teacher extends RegisteredUser implements TeacherAccount {
     String img;
     List<Course> courses = new ArrayList<>();
 
@@ -25,21 +23,16 @@ public class Teacher extends RegisteredUser implements ITeacherAccount {
     @Override
     public void addCourse(Course course) {
         courses.add(course);
+        course.setTeacher(this);
     }
 
     @Override
-    public boolean openDialog(Dialogue dialogue) {
-        return this == dialogue.getTeacher();
-    }
-
-    @Override
-    public boolean sendMessage(Message msg) {
-        if (msg.getDialogue().getMessages().size() != 0)
-            if (msg.getDialogue().getMessages().peek().getSender() == this)
-                return false;
-        msg.setSender(this);
-        msg.getDialogue().addMessage(msg);
-        return true;
+    public Course getCourse(Course course) {
+        for (int i = 0; i < courses.size(); i++) {
+            if (courses.get(i) == course)
+                return course;
+        }
+        return null;
     }
 
     @Override

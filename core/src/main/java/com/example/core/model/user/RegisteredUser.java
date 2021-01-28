@@ -1,13 +1,8 @@
 package com.example.core.model.user;
 
-import com.example.core.model.Dialogue;
-import com.example.core.model.Message;
-import com.example.core.model.account.IAccount;
-import com.example.core.model.account.ICommunication;
+import com.example.core.model.account.Account;
 
-import java.util.List;
-
-public abstract class RegisteredUser implements IAccount, ICommunication {
+public abstract class RegisteredUser implements Account {
     String name;
     String email;
     String password;
@@ -31,19 +26,6 @@ public abstract class RegisteredUser implements IAccount, ICommunication {
         setPassword(password);
         return true;
     }
-
-    @Override
-    public boolean sendMessage(Message msg) {
-        msg.setSender(this);
-        msg.getDialogue().addMessage(msg);
-        return true;
-    }
-
-    @Override
-    public List<Dialogue> listAllDialogs() {
-        return null;
-    }
-
 
     public String getName() {
         return name;

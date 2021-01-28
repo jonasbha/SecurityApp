@@ -1,9 +1,6 @@
 package com.example.core.model.repository;
 
-import com.example.core.model.Report;
-
-import java.util.ArrayList;
-import java.util.HashMap;
+import com.example.core.model.communication.Report;
 
 public interface IRepository {
 

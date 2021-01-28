@@ -1,6 +1,6 @@
 package com.example.support;
 
-import com.example.core.model.Report;
+import com.example.core.model.communication.Report;
 import com.example.core.model.repository.IRepository;
 
 import java.util.ArrayList;

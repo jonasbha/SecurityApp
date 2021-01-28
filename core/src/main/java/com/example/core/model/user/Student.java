@@ -1,7 +1,5 @@
 package com.example.core.model.user;
 
-import com.example.core.model.Dialogue;
-
 public class Student extends RegisteredUser {
     String studium;
     int yearOfClass;
@@ -14,11 +12,6 @@ public class Student extends RegisteredUser {
 
     public String getStudium() {
         return studium;
-    }
-
-    @Override
-    public boolean openDialog(Dialogue dialogue) {
-        return this == dialogue.getStudent();
     }
 
     @Override

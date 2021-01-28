@@ -1,8 +1,9 @@
 package com.example.core.model.user;
 
 import com.example.core.model.Course;
-import com.example.core.model.Message;
-import com.example.core.model.Report;
+import com.example.core.model.communication.GuestComment;
+import com.example.core.model.communication.Message;
+import com.example.core.model.communication.Report;
 
 public class Guest {
 
@@ -14,8 +15,8 @@ public class Guest {
         return new Report(message, issue);
     }
 
-    public void comment(Message message, String comment) {
-        message.addComment(comment);
+    public void comment(Message message, GuestComment guestComment) {
+        message.getComments().add(guestComment);
     }
 
     public Course getCourse(Course course, int PIN) throws Exception {
