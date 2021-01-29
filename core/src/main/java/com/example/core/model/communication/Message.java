@@ -8,12 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Message {
-    private Student sender;
+    private final Student sender;
     private String text;
-    private boolean anonymous;
+    private final boolean anonymous;
     private boolean hasBeenAnswered;
-    Course course;
-    private List<Comment> comments = new ArrayList<>();
+    private final Course course;
+    private final List<Comment> comments = new ArrayList<>();
     int id;
 
     public Message(Student sender, Course course, String text, boolean anonymous) {

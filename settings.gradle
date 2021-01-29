@@ -1,5 +1,4 @@
-include ':database'
-include ':browserapp'
-include ':core'
 include ':app'
+include ':database'
+include ':core'
 rootProject.name = "Security App"
