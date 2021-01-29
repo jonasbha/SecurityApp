@@ -1,4 +1,6 @@
-package com.example.core.model.user;
+package com.example.core.model.account;
+
+import com.example.core.model.account.RegisteredUser;
 
 public class Student extends RegisteredUser {
     String studium;

@@ -1,4 +1,4 @@
-package com.example.support;
+package com.example.core.model.persistence.temp;
 
 import com.example.core.model.account.Course;
 import com.example.core.model.communication.Report;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FakeAccountRepository implements IAccountRepository {
+public class AccountRepository implements IAccountRepository {
 
     HashMap<String, String> credentials = new HashMap<>();
     ArrayList<Report> reports = new ArrayList<>();
@@ -63,7 +63,7 @@ public class FakeAccountRepository implements IAccountRepository {
         for (int i = 0; i < students.size(); i++)
             if (students.get(i) == student)
                 return student;
-            return null;
+        return null;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class FakeAccountRepository implements IAccountRepository {
         for (int i = 0; i < teachers.size(); i++)
             if (teachers.get(i) == teacher)
                 return teacher;
-            return null;
+        return null;
     }
 
     @Override
@@ -103,4 +103,5 @@ public class FakeAccountRepository implements IAccountRepository {
     public Report getReport(Report report) {
         return report;
     }
+
 }

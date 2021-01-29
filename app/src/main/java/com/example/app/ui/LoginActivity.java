@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app.R;
 import com.example.app.controller.LoginController;
-import com.example.core.model.repository.FakeRepo;
+import com.example.core.model.persistence.temp.AccountRepository;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
         username = findViewById(R.id.etUsername);
         password = findViewById(R.id.etPassword);
-        loginController = new LoginController(new FakeRepo());
+        loginController = new LoginController(new AccountRepository());
         loginController.getContext(getApplication());
     }
 }

@@ -1,8 +1,7 @@
 package com.example.core.model.communication;
 
-import com.example.core.model.Course;
-import com.example.core.model.user.Student;
-import com.example.core.model.user.Teacher;
+import com.example.core.model.account.Course;
+import com.example.core.model.account.Student;
 
 import java.util.ArrayList;
 import java.util.List;

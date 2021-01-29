@@ -1,7 +1,7 @@
-package com.example.core.model;
+package com.example.core.model.account;
 
 import com.example.core.model.communication.Message;
-import com.example.core.model.user.Teacher;
+import com.example.core.model.account.Teacher;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,9 +13,10 @@ public class Course {
     Teacher teacher;
     List<Message> messages = new ArrayList<>();
 
-    public Course(String courseCode, int PIN) {
+    public Course(String courseCode, int PIN, Teacher teacher) {
         this.courseCode = courseCode;
         this.PIN = PIN;
+        this.teacher = teacher;
     }
 
     public int getPIN() {

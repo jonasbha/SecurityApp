@@ -1,10 +1,12 @@
 package com.example.core;
 
-import com.example.core.model.Course;
+import com.example.core.model.account.Course;
 import com.example.core.model.communication.Message;
 import com.example.core.model.communication.TeacherComment;
-import com.example.core.model.user.Student;
-import com.example.core.model.user.Teacher;
+import com.example.core.model.account.Student;
+import com.example.core.model.account.Teacher;
+import com.example.core.model.persistence.IAccountRepository;
+import com.example.support.FakeAccountRepository;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,6 +24,13 @@ import static org.junit.Assert.assertNull;
 
 public class Testing_communication_between_registered_users {
 
+    protected IAccountRepository accRepo;
+
+    @Before
+    public void initialize_repository() {
+        accRepo = new FakeAccountRepository();
+    }
+
     private Teacher teacher;
     private Student student;
     private Course course;
@@ -30,8 +39,7 @@ public class Testing_communication_between_registered_users {
     public void initialize_constant_fake_variables() {
         teacher = new Teacher("Gunnar", null, null, null);
         student = new Student("Geir", null, null, null, 2020);
-        course = new Course("ITF123456", 123);
-        teacher.addCourse(course);
+        course = new Course("ITF123456", 123, teacher);
     }
 
     @Test
@@ -55,7 +63,7 @@ public class Testing_communication_between_registered_users {
         Message msg = new Message(student, course,"Hello", false);
         msg.send();
 
-        assertEquals("Hello", course.getMessage(msg).getText());
+        assertEquals("Hello", accRepo.getCourse(course).getMessage(msg).getText());
     }
 
     @Test
@@ -65,14 +73,14 @@ public class Testing_communication_between_registered_users {
 
         TeacherComment response = new TeacherComment("Im a teacher and this is my answer", msg, teacher);
         response.send();
-        assertEquals("Im a teacher and this is my answer", msg.getComment(response).getText());
+        assertEquals("Im a teacher and this is my answer", accRepo.getCourse(course).getMessage(msg).getComment(response).getText());
     }
 
     @Test
     public void teacher_can_read_messages_of_involved_course() {
         Message msg = new Message(student, course,"Hello", false);
         msg.send();
-        assertEquals("Hello", teacher.getCourse(course).getMessage(msg).getText());
+        assertEquals("Hello", accRepo.getCourse(course).getMessage(msg).getText());
     }
 
     @Test
@@ -83,7 +91,7 @@ public class Testing_communication_between_registered_users {
         TeacherComment response = new TeacherComment("Im a teacher and this is my answer", msg, teacher);
         response.send();
 
-        assertEquals("Hello", response.getSender().getCourse(course).getMessage(msg).getText());
+        assertEquals("Im a teacher and this is my answer", accRepo.getCourse(course).getMessage(msg).getComment(response).getText());
     }
 
     @Test

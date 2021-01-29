@@ -3,7 +3,7 @@ package com.example.app.controller;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.example.core.model.repository.IAccountRepository;
+import com.example.core.model.persistence.IAccountRepository;
 
 public class LoginController {
 

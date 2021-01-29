@@ -1,13 +1,13 @@
 package com.example.core;
 
-import com.example.core.model.Course;
+import com.example.core.model.account.Course;
 import com.example.core.model.communication.GuestComment;
 import com.example.core.model.communication.Message;
 import com.example.core.model.communication.Report;
-import com.example.core.model.repository.IAccountRepository;
-import com.example.core.model.user.Guest;
-import com.example.core.model.user.Student;
-import com.example.core.model.user.Teacher;
+import com.example.core.model.persistence.IAccountRepository;
+import com.example.core.model.guest.Guest;
+import com.example.core.model.account.Student;
+import com.example.core.model.account.Teacher;
 import com.example.support.FakeAccountRepository;
 
 import org.junit.Before;
@@ -29,7 +29,7 @@ import static org.junit.Assert.assertNull;
 
 public class Testing_guest_features {
 
-    protected IAccountRepository repo;
+    protected IAccountRepository accRepo;
     private Guest guest;
     private Teacher teacher;
     private Student student;
@@ -37,7 +37,7 @@ public class Testing_guest_features {
 
     @Before
     public void initialize_repository() {
-        repo = new FakeAccountRepository();
+        accRepo = new FakeAccountRepository();
     }
 
     @Before
@@ -45,8 +45,7 @@ public class Testing_guest_features {
         guest = new Guest();
         teacher = new Teacher("Gunnar", null, null, null);
         student = new Student("Geir", null, null, null, 2020);
-        course = new Course("ITF123456", 123);
-        teacher.addCourse(course);
+        course = new Course("ITF123456", 123, teacher);
     }
 
     @Test
@@ -69,9 +68,9 @@ public class Testing_guest_features {
         msg.send();
 
         Report report = guest.reportMessage(guest.getCourse(course, 123).getMessage(msg),"rude");
-        repo.addReport(report);
+        accRepo.addReport(report);
 
-        assertEquals("rude", report.getIssue());
+        assertEquals("rude", accRepo.getReport(report).getIssue());
     }
 
     @Test
@@ -82,6 +81,6 @@ public class Testing_guest_features {
         GuestComment comment = new GuestComment("Hello to you too", msg);
         guest.comment(msg, comment);
 
-        assertEquals("Hello to you too", msg.getComment(comment).getText());
+        assertEquals("Hello to you too", accRepo.getCourse(course).getMessage(msg).getComment(comment).getText());
     }
 }

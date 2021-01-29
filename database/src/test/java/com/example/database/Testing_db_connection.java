@@ -19,8 +19,8 @@ public class Testing_db_connection {
 
         try {
             String url = "jdbc:mysql://158.39.188.206/";
-            String userName = "datasikkerhet";
-            String password = "/xu6U@$WN";
+            String userName = "admin";
+            String password = "/datasikkerhet123";
 
             conn = DriverManager.getConnection(url, userName, password);
             rs = conn.prepareStatement("Select 1 FROM Student;").executeQuery();
