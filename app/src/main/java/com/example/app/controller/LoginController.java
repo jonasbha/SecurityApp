@@ -3,10 +3,9 @@ package com.example.app.controller;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.example.app.MainActivity;
 import com.example.core.model.repository.IRepository;
 
-public class LoginController extends MainActivity {
+public class LoginController {
 
     IRepository repo;
 
@@ -14,12 +13,17 @@ public class LoginController extends MainActivity {
         this.repo = repo;
     }
 
+    Context ctx;
+
     public void login(String username, String password) {
-        Context ctx = getApplicationContext();
 
         if (repo.verifyCredentials(username, password))
             Toast.makeText(ctx, "U logged in succesfully", Toast.LENGTH_LONG).show();
         else
             Toast.makeText(ctx, "Ur out", Toast.LENGTH_LONG).show();
+    }
+
+    public void getContext(Context ctx) {
+        this.ctx = ctx;
     }
 }

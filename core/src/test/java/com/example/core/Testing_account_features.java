@@ -37,7 +37,7 @@ public class Testing_account_features {
 
     @Test
     public void registering_teacher_account_succeeds() {
-        com.example.core.model.user.Teacher teacher = new com.example.core.model.user.Teacher("Gunnar", null, null, null);
+        Teacher teacher = new Teacher("Gunnar", null, null, null);
         assertEquals("Gunnar", teacher.getName());
     }
 
