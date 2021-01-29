@@ -1,13 +1,13 @@
 package com.example.support;
 
 import com.example.core.model.communication.Report;
-import com.example.core.model.repository.IRepository;
+import com.example.core.model.repository.IAccountRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FakeRepository implements IRepository {
+public class FakeAccountRepository implements IAccountRepository {
 
     HashMap<String, String> credentials = new HashMap<>();
     ArrayList<Report> reports = new ArrayList<>();

@@ -4,11 +4,11 @@ import com.example.core.model.Course;
 import com.example.core.model.communication.GuestComment;
 import com.example.core.model.communication.Message;
 import com.example.core.model.communication.Report;
-import com.example.core.model.repository.IRepository;
+import com.example.core.model.repository.IAccountRepository;
 import com.example.core.model.user.Guest;
 import com.example.core.model.user.Student;
 import com.example.core.model.user.Teacher;
-import com.example.support.FakeRepository;
+import com.example.support.FakeAccountRepository;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -29,7 +29,7 @@ import static org.junit.Assert.assertNull;
 
 public class Testing_guest_features {
 
-    protected IRepository repo;
+    protected IAccountRepository repo;
     private Guest guest;
     private Teacher teacher;
     private Student student;
@@ -37,7 +37,7 @@ public class Testing_guest_features {
 
     @Before
     public void initialize_repository() {
-        repo = new FakeRepository();
+        repo = new FakeAccountRepository();
     }
 
     @Before

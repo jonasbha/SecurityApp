@@ -1,10 +1,10 @@
 package com.example.core;
 
 import com.example.core.model.Course;
-import com.example.core.model.repository.IRepository;
+import com.example.core.model.repository.IAccountRepository;
 import com.example.core.model.user.Student;
 import com.example.core.model.user.Teacher;
-import com.example.support.FakeRepository;
+import com.example.support.FakeAccountRepository;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,11 +22,11 @@ import static org.junit.Assert.assertTrue;
  * */
 
 public class Testing_account_features {
-    protected IRepository repo;
+    protected IAccountRepository repo;
 
     @Before
     public void initialize_repository() {
-        repo = new FakeRepository();
+        repo = new FakeAccountRepository();
     }
 
     @Test

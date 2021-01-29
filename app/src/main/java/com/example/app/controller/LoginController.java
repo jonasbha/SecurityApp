@@ -3,13 +3,13 @@ package com.example.app.controller;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.example.core.model.repository.IRepository;
+import com.example.core.model.repository.IAccountRepository;
 
 public class LoginController {
 
-    IRepository repo;
+    IAccountRepository repo;
 
-    public LoginController(IRepository repo) {
+    public LoginController(IAccountRepository repo) {
         this.repo = repo;
     }
 
