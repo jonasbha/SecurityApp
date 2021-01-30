@@ -16,7 +16,10 @@ import com.example.core.model.persistence.repository.IAccountRepository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 public class AccountRepository_db implements IAccountRepository {
@@ -38,23 +41,59 @@ public class AccountRepository_db implements IAccountRepository {
             return null;
         }
     }
-/*
-    public boolean verifyCredentials(String username, String password) {
 
-        for (Map.Entry<String, String> set : credentials.entrySet())
-            if (set.getKey().equals(username) && set.getValue().equals(password))
-                return true;
-        return false;
-    }
-*/
     @Override
     public boolean verifyCredentials(String username, String password) {
+        Connection conn = connect();
+
+        // hvorfor ikke ha egen credential tabell med email som pk?
+
+        String studentCredentials = "SELECT email, password FROM Student;";
+        String teacherCredentials = "SELECT email, password FROM Teacher;";
+        try {
+            Statement statement = conn.createStatement();
+            ResultSet set1 = statement.executeQuery(studentCredentials);
+            ResultSet set2 = statement.executeQuery(teacherCredentials);
+
+            while (set1.next()) {
+                if (set1.getString("email").equals(username) && set1.getString("password").equals(password))
+                    return true;
+            }
+            while (set2.next()) {
+                if (set2.getString("email").equals(username) && set2.getString("password").equals(password))
+                    return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
         return false;
     }
 
     @Override
     public void addCredential(String username, String password) {
+        Connection conn = connect();
 
+        // does not work yet.
+        String sqlQuery = "INSERT INTO ... (X, Y) VALUES (email, password)";
+        try {
+            conn.prepareStatement(sqlQuery).executeQuery(sqlQuery);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override

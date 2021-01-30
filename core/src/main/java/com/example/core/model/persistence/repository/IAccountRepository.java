@@ -5,6 +5,7 @@ import com.example.core.model.user_account.Student;
 import com.example.core.model.user_account.Teacher;
 import com.example.core.model.Report;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface IAccountRepository {
