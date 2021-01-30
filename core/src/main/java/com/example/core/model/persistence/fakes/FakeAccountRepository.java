@@ -1,44 +1,28 @@
-package com.example.database;
+package com.example.core.model.persistence.fakes;
 
 import com.example.core.model.Course;
+import com.example.core.model.Report;
 import com.example.core.model.persistence.daos.ICourseDao;
 import com.example.core.model.persistence.daos.IReportDao;
-import com.example.core.model.persistence.daos.IStudentDao;
 import com.example.core.model.persistence.daos.ITeacherDao;
-import com.example.core.model.persistence.fakes.CourseDaoImp;
-import com.example.core.model.persistence.fakes.ReportDaoImp;
-import com.example.core.model.persistence.fakes.StudentDaoImp;
-import com.example.core.model.persistence.fakes.TeacherDaoImp;
+import com.example.core.model.persistence.repository.IAccountRepository;
 import com.example.core.model.user_account.Student;
 import com.example.core.model.user_account.Teacher;
-import com.example.core.model.Report;
-import com.example.core.model.persistence.repository.IAccountRepository;
+import com.example.core.model.persistence.daos.IStudentDao;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class AccountRepository_db implements IAccountRepository {
+public class FakeAccountRepository implements IAccountRepository {
 
-    ICourseDao courseDao = new CourseDaoImp_db();
-    IReportDao reportDao = new ReportDaoImp_db();
-    ITeacherDao teacherDao = new TeacherDaoImp_db();
-    IStudentDao studentDao = new StudentDaoImp_db();
+    HashMap<String, String> credentials = new HashMap<>();
+    IReportDao reportDao = new ReportDaoImp();
+    ITeacherDao teacherDao = new TeacherDaoImp();
+    ICourseDao courseDao = new CourseDaoImp();
+    IStudentDao studentDao = new StudentDaoImp();
 
-    Connection connect() {
-        try {
-            String url = "jdbc:mysql://158.39.188.206/";
-            String userName = "datasikkerhet";
-            String password = "/xu6U@$WN";
-
-            return DriverManager.getConnection(url, userName, password);
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-/*
+    @Override
     public boolean verifyCredentials(String username, String password) {
 
         for (Map.Entry<String, String> set : credentials.entrySet())
@@ -46,15 +30,10 @@ public class AccountRepository_db implements IAccountRepository {
                 return true;
         return false;
     }
-*/
-    @Override
-    public boolean verifyCredentials(String username, String password) {
-        return false;
-    }
 
     @Override
     public void addCredential(String username, String password) {
-
+        credentials.put(username, password);
     }
 
     @Override
@@ -101,4 +80,5 @@ public class AccountRepository_db implements IAccountRepository {
     public Report getReport(Report report) {
         return reportDao.read(report);
     }
+
 }

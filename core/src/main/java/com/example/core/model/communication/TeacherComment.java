@@ -1,6 +1,6 @@
 package com.example.core.model.communication;
 
-import com.example.core.model.account.Teacher;
+import com.example.core.model.user_account.Teacher;
 
 public class TeacherComment extends Comment {
     Teacher sender;

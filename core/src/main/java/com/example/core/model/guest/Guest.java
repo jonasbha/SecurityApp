@@ -1,9 +1,9 @@
 package com.example.core.model.guest;
 
-import com.example.core.model.account.Course;
+import com.example.core.model.Course;
 import com.example.core.model.communication.GuestComment;
 import com.example.core.model.communication.Message;
-import com.example.core.model.communication.Report;
+import com.example.core.model.Report;
 
 public class Guest {
 
