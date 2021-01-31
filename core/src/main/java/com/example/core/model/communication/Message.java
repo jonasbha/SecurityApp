@@ -26,16 +26,19 @@ public class Message {
         course.getMessages().add(this);
     }
 
-    public Student getSender() {
+    public String getSender() {
         if (anonymous)
-            return null;
-        return sender;
+            return "Anonymous";
+        return sender.getName();
     }
 
     public String getText() {
         return text;
     }
 
+    public Course getCourse() {
+        return course;
+    }
 
     public List<Comment> getComments() {
         return comments;

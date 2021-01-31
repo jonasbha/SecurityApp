@@ -8,6 +8,7 @@ public class TeacherComment extends Comment {
     public TeacherComment(String text, Message msg, Teacher sender) {
         super(text, msg);
         this.sender = sender;
+        this.text = msg.getCourse().getTeacher().getName() + ": " + text;
     }
 
     public Teacher getSender() {

@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">app</string>
     <string name="username">Name</string>
+    <string name="datasikkerhet">ITF25019-1 21V</string>
+    <string name="messages">Messages</string>
+    <string name="courses">Courses</string>
 </resources>

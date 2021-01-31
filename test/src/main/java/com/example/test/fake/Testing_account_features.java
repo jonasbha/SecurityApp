@@ -61,6 +61,6 @@ public class Testing_account_features {
         repo().addCourse(course1);
         repo().addCourse(course2);
 
-        assertEquals(repo().getCourses().size(), 2);
+        assertEquals(repo().getCourses().size(), 4);
     }
 }

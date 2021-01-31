@@ -45,7 +45,7 @@ public class Testing_communication_between_registered_users {
         Message msg = new Message(student, course,"Hello", false);
         msg.send();
 
-        assertEquals(student, repo().getCourse(course).getMessage(msg).getSender());
+        assertEquals("Geir", repo().getCourse(course).getMessage(msg).getSender());
     }
 
     @Test
@@ -53,7 +53,7 @@ public class Testing_communication_between_registered_users {
         Message msg = new Message(student, course,"Hello", true);
         msg.send();
 
-        assertNull(repo().getCourse(course).getMessage(msg).getSender());
+        assertEquals("Anonymous", repo().getCourse(course).getMessage(msg).getSender());
     }
 
     @Test

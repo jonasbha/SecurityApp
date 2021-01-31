@@ -9,6 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.SecurityApp">
+        <activity android:name=".ui.courses.guest.GuestDatasikkerhetActivity" />
+        <activity android:name=".ui.GuestLandingActivity" />
         <activity android:name=".ui.RegisterActivity" />
         <activity android:name=".ui.LoginActivity">
             <intent-filter>

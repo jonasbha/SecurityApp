@@ -44,6 +44,10 @@ public class Course {
         return teacher;
     }
 
+    public String getCourseCode() {
+        return courseCode;
+    }
+
     @Override
     public String toString() {
         return "Course{" +

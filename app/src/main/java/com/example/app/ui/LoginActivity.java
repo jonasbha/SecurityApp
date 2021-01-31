@@ -31,13 +31,8 @@ public class LoginActivity extends AppCompatActivity {
 
         login.setOnClickListener(v -> loginController.login(username.getText().toString(), password.getText().toString()));
         register.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, RegisterActivity.class)));
-        guestLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-    }
+        guestLogin.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, GuestLandingActivity.class)));
+   }
 
     public void initializeVariables() {
         login = findViewById(R.id.loginBtn);
