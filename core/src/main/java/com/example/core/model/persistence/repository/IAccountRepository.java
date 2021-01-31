@@ -1,11 +1,10 @@
 package com.example.core.model.persistence.repository;
 
-import com.example.core.model.Course;
+import com.example.core.model.course.Course;
 import com.example.core.model.user_account.Student;
 import com.example.core.model.user_account.Teacher;
-import com.example.core.model.Report;
+import com.example.core.model.course.Report;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface IAccountRepository {

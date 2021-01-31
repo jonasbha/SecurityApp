@@ -1,4 +1,4 @@
-package com.example.core.model.communication;
+package com.example.core.model.course;
 
 import com.example.core.model.user_account.Teacher;
 

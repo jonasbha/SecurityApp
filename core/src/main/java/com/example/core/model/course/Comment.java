@@ -1,4 +1,4 @@
-package com.example.core.model.communication;
+package com.example.core.model.course;
 
 public abstract class Comment {
     String text;

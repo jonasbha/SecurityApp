@@ -5,11 +5,11 @@ import android.widget.Toast;
 
 import com.example.core.model.persistence.repository.IAccountRepository;
 
-public class LoginController {
+public class AccountController {
 
     IAccountRepository repo;
 
-    public LoginController(IAccountRepository repo) {
+    public AccountController(IAccountRepository repo) {
         this.repo = repo;
     }
 

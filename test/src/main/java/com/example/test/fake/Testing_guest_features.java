@@ -1,14 +1,13 @@
 package com.example.test.fake;
 
-import com.example.core.model.Course;
-import com.example.core.model.Report;
-import com.example.core.model.communication.GuestComment;
-import com.example.core.model.communication.Message;
+import com.example.core.model.course.Course;
+import com.example.core.model.course.Report;
+import com.example.core.model.course.GuestComment;
+import com.example.core.model.course.Message;
 import com.example.core.model.guest.Guest;
 import com.example.core.model.persistence.repository.IAccountRepository;
 import com.example.core.model.user_account.Student;
 import com.example.core.model.user_account.Teacher;
-import com.example.test.fake.PersistenceSupport;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -75,6 +74,6 @@ public class Testing_guest_features {
         GuestComment comment = new GuestComment("Hello to you too", msg);
         guest.comment(msg, comment);
 
-        assertEquals("Hello to you too", repo().getCourse(course).getMessage(msg).getComment(comment).getText());
+        assertEquals("Guest: Hello to you too", repo().getCourse(course).getMessage(msg).getComment(comment).getText());
     }
 }

@@ -1,6 +1,6 @@
 package com.example.database;
 
-import com.example.core.model.Course;
+import com.example.core.model.course.Course;
 import com.example.core.model.persistence.daos.ICourseDao;
 
 import java.util.List;

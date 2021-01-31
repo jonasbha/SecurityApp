@@ -1,19 +1,19 @@
 package com.example.app.controller;
 
 import com.example.app.tools.MainAdapter;
-import com.example.core.model.Course;
-import com.example.core.model.communication.Message;
+import com.example.core.model.course.Course;
+import com.example.core.model.course.Message;
 import com.example.core.model.persistence.repository.IAccountRepository;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class GuestController {
+public class CourseController {
 
     IAccountRepository accountRepository;
 
-    public GuestController(IAccountRepository accountRepository) {
+    public CourseController(IAccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 
@@ -39,26 +39,6 @@ public class GuestController {
 
             for (int j = 0; j < messages.get(i).getComments().size(); j++) {
                 arrayList.add(messages.get(i).getComments().get(j).getText());
-            }
-
-            listChild.put(listGroup.get(i), arrayList);
-        }
-
-        return new MainAdapter(listChild, listGroup);
-    }
-
-    public MainAdapter getTestAdapter() {
-        HashMap<String, ArrayList<String>> listChild = new HashMap<>();
-        ArrayList<String> listGroup = new ArrayList<>();
-
-        for (int i = 0; i < 5; i++) {
-
-            listGroup.add("Geir: hello "+i);
-
-            ArrayList<String> arrayList = new ArrayList<>();
-
-            for (int j = 0; j <5; j++) {
-                arrayList.add("commenter: hei"+j);
             }
 
             listChild.put(listGroup.get(i), arrayList);

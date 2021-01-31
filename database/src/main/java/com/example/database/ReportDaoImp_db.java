@@ -1,6 +1,6 @@
 package com.example.database;
 
-import com.example.core.model.Report;
+import com.example.core.model.course.Report;
 import com.example.core.model.persistence.daos.IReportDao;
 
 public class ReportDaoImp_db implements IReportDao {

@@ -1,12 +1,11 @@
 package com.example.test.fake;
 
-import com.example.core.model.Course;
-import com.example.core.model.communication.Message;
-import com.example.core.model.communication.TeacherComment;
+import com.example.core.model.course.Course;
+import com.example.core.model.course.Message;
+import com.example.core.model.course.TeacherComment;
 import com.example.core.model.persistence.repository.IAccountRepository;
 import com.example.core.model.user_account.Student;
 import com.example.core.model.user_account.Teacher;
-import com.example.test.fake.PersistenceSupport;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -71,7 +70,7 @@ public class Testing_communication_between_registered_users {
 
         TeacherComment response = new TeacherComment("Im a teacher and this is my answer", msg, teacher);
         response.send();
-        assertEquals("Im a teacher and this is my answer", repo().getCourse(course).getMessage(msg).getComment(response).getText());
+        assertEquals("Gunnar: Im a teacher and this is my answer", repo().getCourse(course).getMessage(msg).getComment(response).getText());
     }
 
     @Test
@@ -89,7 +88,7 @@ public class Testing_communication_between_registered_users {
         TeacherComment response = new TeacherComment("Im a teacher and this is my answer", msg, teacher);
         response.send();
 
-        assertEquals("Im a teacher and this is my answer", repo().getCourse(course).getMessage(msg).getComment(response).getText());
+        assertEquals("Gunnar: Im a teacher and this is my answer", repo().getCourse(course).getMessage(msg).getComment(response).getText());
     }
 
     @Test

@@ -1,7 +1,7 @@
 package com.example.core.model.persistence.fakes;
 
-import com.example.core.model.Course;
-import com.example.core.model.Report;
+import com.example.core.model.course.Course;
+import com.example.core.model.course.Report;
 import com.example.core.model.persistence.daos.ICourseDao;
 import com.example.core.model.persistence.daos.IReportDao;
 import com.example.core.model.persistence.daos.ITeacherDao;

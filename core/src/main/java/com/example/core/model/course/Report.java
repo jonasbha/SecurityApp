@@ -1,6 +1,6 @@
-package com.example.core.model;
+package com.example.core.model.course;
 
-import com.example.core.model.communication.Message;
+import com.example.core.model.course.Message;
 
 public class Report {
     private final Message message;

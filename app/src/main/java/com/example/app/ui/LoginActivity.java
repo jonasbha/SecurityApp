@@ -2,19 +2,18 @@ package com.example.app.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.app.R;
-import com.example.app.controller.LoginController;
+import com.example.app.controller.AccountController;
 import com.example.core.model.persistence.fakes.FakeAccountRepository;
 
 public class LoginActivity extends AppCompatActivity {
 
-    LoginController loginController;
+    AccountController accountController;
 
     private EditText username;
     private EditText password;
@@ -29,7 +28,7 @@ public class LoginActivity extends AppCompatActivity {
 
         initializeVariables();
 
-        login.setOnClickListener(v -> loginController.login(username.getText().toString(), password.getText().toString()));
+        login.setOnClickListener(v -> accountController.login(username.getText().toString(), password.getText().toString()));
         register.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, RegisterActivity.class)));
         guestLogin.setOnClickListener(v -> startActivity(new Intent(LoginActivity.this, GuestLandingActivity.class)));
    }
@@ -41,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
 
         username = findViewById(R.id.etUsername);
         password = findViewById(R.id.etPassword);
-        loginController = new LoginController(new FakeAccountRepository());
-        loginController.getContext(getApplication());
+        accountController = new AccountController(new FakeAccountRepository());
+        accountController.getContext(getApplication());
     }
 }

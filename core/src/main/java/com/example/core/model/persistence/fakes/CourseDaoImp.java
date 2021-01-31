@@ -1,9 +1,9 @@
 package com.example.core.model.persistence.fakes;
 
-import com.example.core.model.Course;
-import com.example.core.model.communication.GuestComment;
-import com.example.core.model.communication.Message;
-import com.example.core.model.communication.TeacherComment;
+import com.example.core.model.course.Course;
+import com.example.core.model.course.GuestComment;
+import com.example.core.model.course.Message;
+import com.example.core.model.course.TeacherComment;
 import com.example.core.model.persistence.daos.ICourseDao;
 import com.example.core.model.user_account.Student;
 import com.example.core.model.user_account.Teacher;

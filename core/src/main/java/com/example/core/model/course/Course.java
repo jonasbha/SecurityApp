@@ -1,11 +1,10 @@
-package com.example.core.model;
+package com.example.core.model.course;
 
-import com.example.core.model.communication.Message;
+import com.example.core.model.course.Message;
 import com.example.core.model.user_account.Teacher;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
 public class Course {

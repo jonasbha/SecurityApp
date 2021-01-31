@@ -1,4 +1,4 @@
-package com.example.core.model.communication;
+package com.example.core.model.course;
 
 public class GuestComment extends Comment {
     public GuestComment(String text, Message msg) {

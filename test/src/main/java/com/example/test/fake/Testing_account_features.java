@@ -1,10 +1,9 @@
 package com.example.test.fake;
 
-import com.example.core.model.Course;
+import com.example.core.model.course.Course;
 import com.example.core.model.persistence.repository.IAccountRepository;
 import com.example.core.model.user_account.Student;
 import com.example.core.model.user_account.Teacher;
-import com.example.test.fake.PersistenceSupport;
 
 import org.junit.Before;
 import org.junit.Test;

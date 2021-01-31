@@ -1,22 +1,17 @@
 package com.example.database;
 
-import com.example.core.model.Course;
+import com.example.core.model.course.Course;
 import com.example.core.model.persistence.daos.ICourseDao;
 import com.example.core.model.persistence.daos.IReportDao;
 import com.example.core.model.persistence.daos.IStudentDao;
 import com.example.core.model.persistence.daos.ITeacherDao;
-import com.example.core.model.persistence.fakes.CourseDaoImp;
-import com.example.core.model.persistence.fakes.ReportDaoImp;
-import com.example.core.model.persistence.fakes.StudentDaoImp;
-import com.example.core.model.persistence.fakes.TeacherDaoImp;
 import com.example.core.model.user_account.Student;
 import com.example.core.model.user_account.Teacher;
-import com.example.core.model.Report;
+import com.example.core.model.course.Report;
 import com.example.core.model.persistence.repository.IAccountRepository;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;

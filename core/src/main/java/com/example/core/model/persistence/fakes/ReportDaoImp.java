@@ -1,6 +1,6 @@
 package com.example.core.model.persistence.fakes;
 
-import com.example.core.model.Report;
+import com.example.core.model.course.Report;
 import com.example.core.model.persistence.daos.IReportDao;
 
 import java.util.ArrayList;

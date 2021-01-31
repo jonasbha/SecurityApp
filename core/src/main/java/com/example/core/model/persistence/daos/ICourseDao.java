@@ -1,6 +1,6 @@
 package com.example.core.model.persistence.daos;
 
-import com.example.core.model.Course;
+import com.example.core.model.course.Course;
 
 import java.util.List;
 
